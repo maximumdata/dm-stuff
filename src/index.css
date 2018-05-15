@@ -3,3 +3,26 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.names .name {
+    padding-top: 24px;
+}
+.names .name .name-out {
+    min-height: 48px;
+}
+
+.statues {
+    min-height: 120px;
+}
+
+h1, h2, h4, h5, h6 {
+    color: darkslategrey;
+}
+
+h3 {
+    color: brown;
+}
+
+section {
+    margin: 24px 0;
+}

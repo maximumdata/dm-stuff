@@ -9,22 +9,13 @@ class App extends Component {
             <StatueGenerator buttonText="Get Statue"/>
             <Names />
         </div>
-      // <div className="App">
-      //   <header className="App-header">
-      //     <img src={logo} className="App-logo" alt="logo" />
-      //     <h1 className="App-title">Welcome to React</h1>
-      //   </header>
-      //   <p className="App-intro">
-      //     To get started, edit <code>src/App.js</code> and save to reload.
-      //   </p>
-      // </div>2
     );
   }
 }
 
 
 
-class StatueGenerator extends React.Component {
+class StatueGenerator extends Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
@@ -46,38 +37,52 @@ class StatueGenerator extends React.Component {
             });
         });
     }
+    componentDidMount() {
+        this.handleClick();
+    }
     getContent() {
         if(!this.state.desc) {
             return (
+
                 <button onClick={this.handleClick}>{this.props.buttonText}</button>
+
             )
         }
         if (this.state.trigger) {
             return (
                 <div>
-                    <h3>Description:</h3>
-                    <div>{this.state.desc}</div>
+                    <h5>Description:</h5>
+                    <p>{this.state.desc}</p>
                     <h5>Trigger:</h5>
-                    <small>{this.state.trigger}</small>
-                    <br /><br />
+                    <p>{this.state.trigger}</p>
                     <button onClick={this.handleClick}>{this.props.buttonText}</button>
                 </div>
             )
         } else { return <div>loading</div> }
     }
     render() {
-        return this.getContent()
+        return (
+            <section className="statues">
+                <div className="row">
+                    <div className="col-sm-12">
+                        <h3>Statue Generator</h3>
+                        { this.getContent() }
+                    </div>
+                </div>
+            </section>
+        )
     }
 }
 
-class Names extends React.Component {
+class Names extends Component {
     constructor(props) {
         super(props);
-        this.races = ['Dragonborn', 'Human', 'Dwarf', 'Elf', 'Gnome', 'Halfling', 'Tiefling', 'HalfOrc'];
+        this.races = [ 'Human', 'Dwarf', 'Elf', 'Dragonborn', 'Gnome', 'Halfling', 'Tiefling', 'HalfOrc'];
     }
     render() {
         return (
-            <div className="names">
+            <section className="names">
+                <h3>Name Generators</h3>
                 {
                     this.races.reduce((pairs, book, index) => { // split the books into pairs
                         if(index % 4 === 0) {
@@ -89,19 +94,12 @@ class Names extends React.Component {
                         <NamesRow key={ index } names={ pair } />
                     ))
                 }
-            </div>
+            </section>
         )
-        // return (
-        //     <div className="row names">
-        //         {
-        //             this.races.map((race, index) => <NameGenerator key={index} race={race} />)
-        //         }
-        //     </div>
-        // )
     }
 }
 
-class NamesRow extends React.Component {
+class NamesRow extends Component {
     render() {
         return (
             <div className="row">
@@ -112,7 +110,7 @@ class NamesRow extends React.Component {
         )
     }
 }
-class NameGenerator extends React.Component {
+class NameGenerator extends Component {
      constructor(props) {
          super(props);
          this.onClick = this.onClick.bind(this);
@@ -139,7 +137,7 @@ class NameGenerator extends React.Component {
          return (
              <div className="col-sm-12 col-md-6 col-lg-3 name">
                  <h5>{this.props.race}</h5>
-                 <div className="name-out">{this.state.firstName} {this.state.lastName}</div>
+                 <p>{this.state.firstName} {this.state.lastName}</p>
                  <button onClick={this.onClick} data-sex="male">Male</button>
                  <button onClick={this.onClick} data-sex="female">Female</button>
              </div>
