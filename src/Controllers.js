@@ -29,7 +29,11 @@ const getName = (race, sex) => {
     return needle('get', `https://mikedettmer.com/dm/name?race=${race}&sex=${sex}`)
 }
 
+const getInn = () => {
+  return needle('get', 'https://mikedettmer.com/dm/inn');
+}
 export default {
     getStatue,
-    getName
+    getName,
+    getInn
 }

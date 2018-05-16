@@ -7,6 +7,9 @@ body {
 .names .name {
     padding-top: 24px;
 }
+.names .row:first-of-type .name {
+    padding-top: 0;
+}
 .names .name .name-out {
     min-height: 48px;
 }
