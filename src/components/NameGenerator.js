@@ -11,14 +11,14 @@ class NameGenerator extends Component {
             <section className="names">
                 <h3>Name Generators</h3>
                 {
-                    this.races.reduce((pairs, book, index) => { // split the books into pairs
+                    this.races.reduce((quarters, race, index) => { // split into quarters
                         if(index % 4 === 0) {
-                            pairs.push([]);
+                            quarters.push([]);
                         }
-                        pairs[pairs.length - 1].push(book);
-                        return pairs;
-                    }, []).map((pair, index) => ( // map the pairs to row
-                        <NamesRow key={ index } names={ pair } />
+                        quarters[quarters.length - 1].push(race);
+                        return quarters;
+                    }, []).map((quarter, index) => ( // map the quarters to row
+                        <NamesRow key={ index } names={ quarter } />
                     ))
                 }
             </section>
@@ -64,7 +64,7 @@ class NameGeneratorSingle extends Component {
          return (
              <div className="col-sm-12 col-md-6 col-lg-3 name">
                  <h5>{this.props.race}</h5>
-                 <p>{this.state.firstName} {this.state.lastName}</p>
+                 <p className="name-out">{this.state.firstName} {this.state.lastName}</p>
                  <button onClick={this.onClick} data-sex="male">Male</button>
                  <button onClick={this.onClick} data-sex="female">Female</button>
              </div>
